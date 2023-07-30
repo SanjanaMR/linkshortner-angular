@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <h4 class="text-center text-primary m-3">Link Shortener</h4>
+  </div>
+
+  <div class="row shadow mt-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="input-group mb-1 mt-1">
+          <input type="text" class="form-control" placeholder="Enter URL" [(ngModel)]="url"
+            aria-label="Recipient's username" aria-describedby="button-addon2" />
+          <button class="btn btn-outline-primary" type="button" (click)="generateShortUrl()" id="button-addon2">
+            Generate
+          </button>
+        </div>
+
+        <div *ngIf="!isValidUrlFormat" class="text-danger mt-2">{{ errorMessage }}</div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3 shadow" *ngIf="isUrlGenerated || isErrorGenerated">
+    <div class="card">
+      <div class="card-body">
+        <div *ngIf="isErrorGenerated && !isUrlExists" class="row mt-3 shadow">
+          <div class="card">
+            <div class="card-body">
+              <h4>URL has expired! </h4>
+               <p>
+            The short URL you entered doesn't exist in the database.
+            <button class="btn btn-primary" (click)="createNewUrl()">Create New Short URL</button>
+          </p>
+            </div>
+          </div>
+
+        </div>
+        <div *ngIf="isUrlGenerated">
+          <h4>Short URL : <a href="{{originalUrl}}" target="_blank">http://localhost:8085/url/shortner/{{shortUrl}}</a>
+          </h4>
+          This URL is valid for 5min.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

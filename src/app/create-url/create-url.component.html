@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+      <h4 class="text-center text-primary m-3">Create New Short URL</h4>
+    </div>
+  
+    <div class="row shadow mt-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="input-group mb-1 mt-1">
+            <input type="text" class="form-control" placeholder="Enter Long URL" [(ngModel)]="longUrl"
+              aria-label="Recipient's username" aria-describedby="button-addon2" />
+            <button class="btn btn-outline-primary" type="button" (click)="generateShortUrl()" id="button-addon2">
+              Generate
+            </button>
+          </div>
+  
+          <div *ngIf="isUrlGenerated" class="mt-2">
+            <h5>Generated Short URL:</h5>
+            <a href="{{shortUrl}}" target="_blank">{{shortUrl}}</a>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+    <div class="row mt-3 shadow" *ngIf="isErrorGenerated">
+      <div class="card">
+        <div class="card-body">
+          <h4>Error: Unable to generate the short URL.</h4>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
